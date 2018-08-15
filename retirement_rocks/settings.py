@@ -40,7 +40,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'user_auth', #user authentication
     'user_profile', #user profile
-    'phonenumber_field', #thirdparty - https://github.com/stefanfoulis/django-phonenumber-field
     'crispy_forms', #third party
 ]
 

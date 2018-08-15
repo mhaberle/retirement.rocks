@@ -17,7 +17,7 @@ class Profile(models.Model):
 	#user contact information
 	
 	email = models.EmailField("email", max_length=254)
-	phone_number = PhoneNumberField("phone number")
+	phone_number = models.CharField("phone number", max_length=11)
 	
 	#user address
 	street = models.CharField("street address", max_length=100)
@@ -36,6 +36,13 @@ class Profile(models.Model):
 	birth_date = models.DateField(verbose_name="birth date", default=datetime.now)
 	
 	#professional information
+	mission_statement = models.TextField("mission statement") #1-2 sentences to sell yourself
+	#(need to add choices) industry_of_experience = #drop down menu of general industries
+	experience_description = models.TextField("description of experience") #1-2 sentences of professional experience
+	#(need to add choices) experience_length = #menu of experience length (0-10, 10-20, 20-30, or more)
+	#(need to add choices) opportunity_type = #freelancing, volunteering, or both
+
+
 	#current_rating = will update based on a view that does the current math
 
 	def __str__(self):
