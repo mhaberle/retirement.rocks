@@ -31,6 +31,13 @@ class MyUserManager(BaseUserManager):
 
 class User(AbstractBaseUser, PermissionsMixin):
 	email = models.EmailField(unique=True, null=True)
+	is_freelancer = models.BooleanField('freelancer status', default=False)
+
+	USER_TYPE_CHOICES = (
+		('freelancer','freelancer'),('employer','employer')
+		)
+	user_type = models.CharField(max_length=50, choices=USER_TYPE_CHOICES)
+
 	is_staff = models.BooleanField(
 		_('staff status'),
 		default=False,

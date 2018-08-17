@@ -1,7 +1,7 @@
 from django.contrib import admin
 
-from .models import Profile, Experience, Rating
+from .models import UserProfile, UserExperience, UserRating
 
-admin.site.register(Profile)
-admin.site.register(Experience)
-admin.site.register(Rating)
+admin.site.register(UserProfile)
+admin.site.register(UserExperience)
+admin.site.register(UserRating)

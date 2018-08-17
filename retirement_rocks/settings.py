@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'user_auth', #user authentication
     'user_profile', #user profile
+    'company_profile', #company profile
     'crispy_forms', #third party
 ]
 

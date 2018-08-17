@@ -6,7 +6,7 @@ from django.db.models.signals import post_save
 
 from datetime import datetime
 
-class Profile(models.Model):
+class UserProfile(models.Model):
 	#user identification data
 	user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
 	first_name = models.CharField("first name", max_length=50)
@@ -34,13 +34,13 @@ class Profile(models.Model):
 	birth_date = models.DateField(verbose_name="birth date", default=datetime.now)
 	
 	#professional information
-	mission_statement = models.TextField("mission statement") #1-2 sentences to sell yourself
+	mission_statement = models.TextField("mission statement")
 
 	EXPERIENCE_CHOICES = (
-		('0-5','0-5'),('5-10','5-10'),('10-15','10-15'),('15-20','15-20'),('20-25','20-25'),('25-30','25-30'),('30 or more','30 or more'),
+		('0-5','0-5'),('6-10','6-10'),('11-15','11-15'),('16-20','16-20'),('21-25','21-25'),('26-30','26-30'),('31 or more','31 or more'),
 		)
 	experience_length = models.CharField("years of work experience", max_length=10, choices=EXPERIENCE_CHOICES, default='0-5')
-	experience_description = models.TextField("description of experience") #1-2 sentences of professional experience
+	experience_description = models.TextField("description of experience")
 
 	OPPORTUNITY_CHOICES = (
 		('freelancing', 'freelancing'),('volunteering', 'volunteering'),('both', 'both'),
@@ -50,7 +50,7 @@ class Profile(models.Model):
 	def __str__(self):
 		return self.user.email
 
-class Experience(models.Model):
+class UserExperience(models.Model):
 	#user tied to
 	user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
 
@@ -61,12 +61,14 @@ class Experience(models.Model):
 	end_date = models.DateField(verbose_name="end date", default=datetime.now)
 	experience_description = models.TextField("experience description")
 
-class Rating(models.Model):
+class UserRating(models.Model):
 	#user being rated
 	user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='user_being_rated')
 
 	#user doing the rating
 	employer = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='employer_rating_user')
+
+	###need to add a onetoone for the opportunity, to pull in the user and employer fields automatically
 
 	#rating details
 	RATING_CHOICES = (
@@ -75,11 +77,11 @@ class Rating(models.Model):
 	rating = models.CharField("rating", max_length=50, choices=RATING_CHOICES, default='5')
 	rating_description = models.TextField("rating description")
 
-@receiver(post_save, sender=settings.AUTH_USER_MODEL)
-def create_user_profile(sender, instance, created, **kwargs):
-	if created:
-		Profile.objects.create(user=instance)
+	@receiver(post_save, sender=settings.AUTH_USER_MODEL)
+	def create_user_profile(sender, instance, created, **kwargs):
+		if created:
+			UserProfile.objects.create(user=instance)
 
-@receiver(post_save, sender=settings.AUTH_USER_MODEL)
-def save_user_profile(sender, instance, **kwargs):
-	instance.profile.save()
+	@receiver(post_save, sender=settings.AUTH_USER_MODEL)
+	def save_user_profile(sender, instance, **kwargs):
+		instance.userprofile.save()
