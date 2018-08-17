@@ -5,7 +5,6 @@ from django.dispatch import receiver
 from django.db.models.signals import post_save
 
 from datetime import datetime
-from phonenumber_field.modelfields import PhoneNumberField
 
 class Profile(models.Model):
 	#user identification data
@@ -15,7 +14,6 @@ class Profile(models.Model):
 	user_photo = models.ImageField(upload_to='profile_image') #https://stackoverflow.com/questions/6396442/add-image-avatar-field-to-users-in-django
 
 	#user contact information
-	
 	email = models.EmailField("email", max_length=254)
 	phone_number = models.CharField("phone number", max_length=11)
 	
@@ -37,16 +35,45 @@ class Profile(models.Model):
 	
 	#professional information
 	mission_statement = models.TextField("mission statement") #1-2 sentences to sell yourself
-	#(need to add choices) industry_of_experience = #drop down menu of general industries
+
+	EXPERIENCE_CHOICES = (
+		('0-5','0-5'),('5-10','5-10'),('10-15','10-15'),('15-20','15-20'),('20-25','20-25'),('25-30','25-30'),('30 or more','30 or more'),
+		)
+	experience_length = models.CharField("years of work experience", max_length=10, choices=EXPERIENCE_CHOICES, default='0-5')
 	experience_description = models.TextField("description of experience") #1-2 sentences of professional experience
-	#(need to add choices) experience_length = #menu of experience length (0-10, 10-20, 20-30, or more)
-	#(need to add choices) opportunity_type = #freelancing, volunteering, or both
 
-
-	#current_rating = will update based on a view that does the current math
+	OPPORTUNITY_CHOICES = (
+		('freelancing', 'freelancing'),('volunteering', 'volunteering'),('both', 'both'),
+		)
+	opportunity_type = models.CharField("opportunity type", max_length=50, choices=OPPORTUNITY_CHOICES, default='freelancing')
 
 	def __str__(self):
 		return self.user.email
+
+class Experience(models.Model):
+	#user tied to
+	user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+
+	#experience details
+	company = models.CharField("previous employer", max_length=100)	
+	position = models.CharField("previous employer", max_length=100)
+	start_date = models.DateField(verbose_name="start date", default=datetime.now)
+	end_date = models.DateField(verbose_name="end date", default=datetime.now)
+	experience_description = models.TextField("experience description")
+
+class Rating(models.Model):
+	#user being rated
+	user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='user_being_rated')
+
+	#user doing the rating
+	employer = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='employer_rating_user')
+
+	#rating details
+	RATING_CHOICES = (
+		('0','0'),('1','1'),('2','2'),('3','3'),('4','4'),('5','5'),
+		)
+	rating = models.CharField("rating", max_length=50, choices=RATING_CHOICES, default='5')
+	rating_description = models.TextField("rating description")
 
 @receiver(post_save, sender=settings.AUTH_USER_MODEL)
 def create_user_profile(sender, instance, created, **kwargs):
