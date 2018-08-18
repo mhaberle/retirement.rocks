@@ -4,6 +4,9 @@ from django.conf import settings
 from django.dispatch import receiver
 from django.db.models.signals import post_save
 
+from user_auth.models import User
+from retirement_rocks.settings import AUTH_USER_MODEL
+
 from datetime import datetime
 
 class UserProfile(models.Model):
@@ -77,11 +80,20 @@ class UserRating(models.Model):
 	rating = models.CharField("rating", max_length=50, choices=RATING_CHOICES, default='5')
 	rating_description = models.TextField("rating description")
 
-	@receiver(post_save, sender=settings.AUTH_USER_MODEL)
-	def create_user_profile(sender, instance, created, **kwargs):
+# def create_user_profile(request, sender, instance, created, **kwargs):
+
+# 	user_type = User.objects.get(username=request.user.username)
+# 	if user_type.user_type == 'freelancer':
+
+@receiver(post_save, sender=settings.AUTH_USER_MODEL)
+def create_user_profile(sender, instance, created, **kwargs):
+	
+	if instance.user_type == 'freelancer':
 		if created:
 			UserProfile.objects.create(user=instance)
 
-	@receiver(post_save, sender=settings.AUTH_USER_MODEL)
-	def save_user_profile(sender, instance, **kwargs):
+@receiver(post_save, sender=settings.AUTH_USER_MODEL)
+def save_user_profile(sender, instance, **kwargs):
+	
+	if instance.user_type == 'freelancer':
 		instance.userprofile.save()
