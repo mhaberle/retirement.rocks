@@ -1,6 +1,6 @@
 from django import forms
 from django.contrib.auth.forms import ReadOnlyPasswordHashField
-from django.forms import ModelForm
+from django.forms import ModelForm, HiddenInput
 
 from user_auth.models import User
 
@@ -8,7 +8,6 @@ class LoginForm(forms.Form):
 	email = forms.EmailField()
 	password = forms.CharField(label='Password',
 		widget = forms.PasswordInput)
-
 
 class UserCreationForm(forms.ModelForm):
 
@@ -18,14 +17,17 @@ class UserCreationForm(forms.ModelForm):
 		widget = forms.PasswordInput)
 
 	def __init__(self, *args, **kwargs):
-		self.user_type = args
+		user_type = kwargs.pop('user_type')
 		super(UserCreationForm, self).__init__(*args, **kwargs)
+		if user_type:
+			self.initial['user_type'] = user_type
 
 	class Meta:
 		model = User
-		fields = ('email',)
-		# fields = ('email', 'user_type')
-		# wigets = {'user_type': forms.HiddenInput()}
+		fields = ('email', 'user_type')
+		widgets = {
+			'user_type': HiddenInput()
+		}
 
 	def clean_password(self):
 		password1 = self.cleaned_data.get("password1")

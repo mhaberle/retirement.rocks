@@ -13,9 +13,8 @@ def user_signup(request, sign_up_type):
 		user_type = 'employer'
 
 	if request.method=="POST":
-		form = UserCreationForm(request.POST)
+		form = UserCreationForm(request.POST, user_type=user_type)
 		if form.is_valid():
-			form.user_type = user_type
 			form.save()
 			email = form.cleaned_data.get('email')
 			raw_password = form.cleaned_data.get('password1')
@@ -23,8 +22,7 @@ def user_signup(request, sign_up_type):
 			login(request, user)
 			return redirect('../../profile/setup')#need to update
 	else:
-		form = UserCreationForm()
-		form.user_type = user_type
+		form = UserCreationForm(user_type=user_type)
 	return render(request, 'user_auth/login_signup.html', { 'form': form,
 															'form_title': form_title,
 															'login_link': login_link,

@@ -24,7 +24,6 @@ urlpatterns = [
     path('', include('home.urls')),
     #login and signup
     path('<slug:sign_up_type>/', include('user_auth.urls')),
-    path('post-an-opportunity/', include('user_auth.urls')),
     path('', include('user_auth.urls')),
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
