@@ -41,7 +41,10 @@ INSTALLED_APPS = [
     'user_auth', #user authentication
     'user_profile', #user profile
     'company_profile', #company profile
+    'post', #post details
     'crispy_forms', #third party
+    # 'south', #third party for migrations
+
 ]
 
 MIDDLEWARE = [
@@ -81,7 +84,7 @@ WSGI_APPLICATION = 'retirement_rocks.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'retirement_rocks',
+        'NAME': 'boomerangers', #retireement_rocks
         'USER': 'postgres',
         'PASSWORD': 'matthews52',
         'HOST': '',

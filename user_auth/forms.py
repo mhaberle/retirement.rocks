@@ -17,9 +17,15 @@ class UserCreationForm(forms.ModelForm):
 	password2 = forms.CharField(label='Password confirmation',
 		widget = forms.PasswordInput)
 
+	def __init__(self, *args, **kwargs):
+		self.user_type = args
+		super(UserCreationForm, self).__init__(*args, **kwargs)
+
 	class Meta:
 		model = User
-		fields = ('email', 'user_type')
+		fields = ('email',)
+		# fields = ('email', 'user_type')
+		# wigets = {'user_type': forms.HiddenInput()}
 
 	def clean_password(self):
 		password1 = self.cleaned_data.get("password1")

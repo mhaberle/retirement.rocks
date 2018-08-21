@@ -13,7 +13,7 @@ class UserProfile(models.Model):
 	#user identification data
 	user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
 	first_name = models.CharField("first name", max_length=50)
-	last_name = models.CharField("last_name", max_length=50)
+	last_name = models.CharField("last name", max_length=50)
 	user_photo = models.ImageField(upload_to='profile_image') #https://stackoverflow.com/questions/6396442/add-image-avatar-field-to-users-in-django
 
 	#user contact information
