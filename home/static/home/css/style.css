@@ -1,0 +1,67 @@
+
+
+html, body {
+  height: 100vh;
+}
+
+h1#title, h5, a, label, button {
+    color: white;
+    font-family: 'Lobster';
+}
+
+a#main_nav, h5#projects, p#projects {
+	color: #6c757d;
+	font-family: 'Lobster';
+}
+
+a#main_nav:hover {
+	color: #0066ff;
+}
+
+h1#title {
+	color: white;
+	font-size: 60px;
+}
+
+p#title {
+	color: white;
+	font-size: 30px;
+	text-align: center;
+}
+
+.form-group {
+	margin-bottom: 15px;
+}
+
+p#login{
+	text-align: center;
+	margin-bottom: 0px;
+}
+
+.d-flex.justify-content-center#login {
+	padding-bottom: 0px	;
+}
+
+.container-fluid#login {
+  height: 90%;
+  padding-top:3%;
+  background: white url("../images/background_img_manatee.jpg") no-repeat;
+  background-size: cover;
+  background-position: center center;
+/*  position: relative;*/
+}
+
+
+.row#login {
+  padding-top: 2%;
+  text-align: center;
+}
+
+.border#login {
+ background: rgba(253, 253, 253, 0.2)
+}
+
+
+
+
+
