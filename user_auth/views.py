@@ -7,13 +7,25 @@ from user_auth.forms import LoginForm, UserCreationForm
 def user_signup(request, sign_up_type='not_specified'):
 	form_title = 'Sign Up'
 	login_link = '' #corresponds to a link if someone wants to login
+	opposite_link = ''
+	opposite_link_message = ''
 	error_message = ''
+
+	#signals what type of user profile to create
 	if sign_up_type == 'freelance':
 		user_type = 'freelancer'
 	elif sign_up_type == 'post-an-opportunity':
 		user_type = 'employer'
 	else:
-		user_type= 'not_specified'
+		sign_up_type = 'not_specified'
+
+	#set the variable to get the user to alternate signup page if they clicked on the wrong one
+	if sign_up_type == "freelance":
+		opposite_link = "post-an-opportunity"
+		opposite_link_message = "post an opportunity"
+	else:
+		opposite_link  = "freelance"
+		opposite_link_message = "freelance"
 
 	if user_type != 'not_specified':
 		if request.method=="POST":
@@ -32,6 +44,8 @@ def user_signup(request, sign_up_type='not_specified'):
 	return render(request, 'user_auth/login_signup.html', { 'form': form,
 															'form_title': form_title,
 															'login_link': login_link,
+															'opposite_link': opposite_link,
+															'opposite_link_message': opposite_link_message,
 															'error_message': error_message,
 															})
 

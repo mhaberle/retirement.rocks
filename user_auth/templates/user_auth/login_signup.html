@@ -14,6 +14,9 @@
 	{{ form|crispy }}
   <button type="submit" class="btn btn-primary">{{ form_title }}</button>
 </form>
+	<div class="d-flex justify-content-center">
+   	<p id="front-page"> If you meant to {{ opposite_link_message }}, <a id="front-page" href="/{{ opposite_link }}/signup">click here</a></p>
+   	</div>
 </div>
     <div class="col-sm" id="front-page">
     </div>

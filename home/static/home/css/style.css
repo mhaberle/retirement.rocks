@@ -1,5 +1,5 @@
 
-: root {
+:root {
 $brandcolor1: white; 
 $brandcolor2: gray;
 $brandcolor3: black;
@@ -30,6 +30,13 @@ body, html {
     position: relative;
     top: 50%;
     transform: perspective(1px) translateY(-50%);
+}
+
+p#front-page {
+	color: white;
+	font-family: 'Montserrat', sans-serif;
+	font-size: 15px;
+	text-align: center;
 }
 
 h1#front-page {
