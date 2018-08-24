@@ -1,64 +1,66 @@
 
-
-html, body {
-  height: 100vh;
+: root {
+$brandcolor1: white; 
+$brandcolor2: gray;
+$brandcolor3: black;
+$button-no-hover:;
+$button-hover:;
 }
 
-h1#title, h5, a, label, button {
-    color: white;
-    font-family: 'Lobster';
+body, html {
+	height: 100%;
 }
 
-a#main_nav, h5#projects, p#projects {
-	color: #6c757d;
-	font-family: 'Lobster';
+.bg-img { 
+    /* The image used */
+    background-image: url("../images/home_background.jpg");
+    /* Full height */
+    height: 100%; 
+    /* Center and scale the image nicely */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
-a#main_nav:hover {
-	color: #0066ff;
+.container-fluid {
+	height: 100%;
 }
 
-h1#title {
+.row {
+    position: relative;
+    top: 50%;
+    transform: perspective(1px) translateY(-50%);
+}
+
+h1#front-page {
 	color: white;
-	font-size: 60px;
-}
-
-p#title {
-	color: white;
-	font-size: 30px;
+	font-family: 'Montserrat', sans-serif;
+	font-size: 50px;
 	text-align: center;
 }
 
-.form-group {
-	margin-bottom: 15px;
-}
-
-p#login{
+label.requiredField {
+	font-family: 'Montserrat', sans-serif;
+	font-size: 20px;
+	color: white;
 	text-align: center;
-	margin-bottom: 0px;
 }
 
-.d-flex.justify-content-center#login {
-	padding-bottom: 0px	;
+a#nav-front-page {
+	font-family: 'Montserrat', sans-serif;
+	font-size: 15px;
+	color: gray;
 }
 
-.container-fluid#login {
-  height: 90%;
-  padding-top:3%;
-  background: white url("../images/background_img_manatee.jpg") no-repeat;
-  background-size: cover;
-  background-position: center center;
-/*  position: relative;*/
+a:hover#nav-front-page {
+	font-family: 'Montserrat', sans-serif;
+	font-size: 15px;
+	color: black;
 }
 
-
-.row#login {
-  padding-top: 2%;
-  text-align: center;
-}
-
-.border#login {
- background: rgba(253, 253, 253, 0.2)
+.btn-primary {
+	font-family: 'Montserrat', sans-serif;
+	font-size: 20px;
 }
 
 

@@ -12,7 +12,7 @@ class CompanyProfile(models.Model):
 	company_name = models.CharField("company name", max_length=50)
 	first_name = models.CharField("first name", max_length=50)
 	last_name = models.CharField("last_name", max_length=50)
-	company_photo = models.ImageField(upload_to='profile_image') #https://stackoverflow.com/questions/6396442/add-image-avatar-field-to-users-in-django
+	company_photo = models.ImageField(upload_to='company_image') #https://stackoverflow.com/questions/6396442/add-image-avatar-field-to-users-in-django
 
 	#company contact information
 	email = models.EmailField("email", max_length=254)

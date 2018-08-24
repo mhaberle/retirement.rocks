@@ -22,7 +22,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     #home
     path('', include('home.urls')),
-    #login and signup
+    #signup and login
     path('<slug:sign_up_type>/', include('user_auth.urls')),
     path('', include('user_auth.urls')),
 
