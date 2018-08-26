@@ -25,7 +25,7 @@ def user_signup(request, sign_up_type='not_specified'):
 		opposite_link_message = "post an opportunity"
 	else:
 		opposite_link  = "freelance"
-		opposite_link_message = "freelance"
+		opposite_link_message = "freelance or volunteer"
 
 	if user_type != 'not_specified':
 		if request.method=="POST":
@@ -50,7 +50,7 @@ def user_signup(request, sign_up_type='not_specified'):
 															})
 
 def user_login(request):
-	form_title = 'Login'
+	form_title = 'Log In'
 	signup_link = '' #corresponds to a link if someone wants to signup
 	error_message = ''
 

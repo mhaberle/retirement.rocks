@@ -11,6 +11,10 @@ body, html {
 	height: 100%;
 }
 
+.asteriskField {
+    display: none;
+}
+
 .bg-img { 
     /* The image used */
     background-image: url("../images/home_background.jpg");
@@ -39,10 +43,18 @@ p#front-page {
 	text-align: center;
 }
 
+p#front-page-error-message {
+	color: white;
+	font-family: 'Montserrat', sans-serif;
+	font-size: 20px;
+	text-align: center;
+}
+
 h1#front-page {
 	color: white;
 	font-family: 'Montserrat', sans-serif;
 	font-size: 50px;
+	text-shadow: 2px 4px 3px rgba(0,0,0,0.3);
 	text-align: center;
 }
 
@@ -50,24 +62,27 @@ label.requiredField {
 	font-family: 'Montserrat', sans-serif;
 	font-size: 20px;
 	color: white;
+	text-shadow: 2px 4px 3px rgba(0,0,0,0.3);
 	text-align: center;
 }
 
 a#nav-front-page {
 	font-family: 'Montserrat', sans-serif;
-	font-size: 15px;
+	font-size: 18px;
 	color: gray;
 }
 
 a:hover#nav-front-page {
 	font-family: 'Montserrat', sans-serif;
-	font-size: 15px;
+	font-size: 18px;
 	color: black;
+	text-decoration: none;
 }
 
 .btn-primary {
 	font-family: 'Montserrat', sans-serif;
 	font-size: 20px;
+	text-shadow: 2px 4px 3px rgba(0,0,0,0.3);
 }
 
 
