@@ -25,5 +25,7 @@ urlpatterns = [
     #signup, login, password reset  
     path('<slug:sign_up_type>/', include('user_auth.urls')),
     path('', include('user_auth.urls')),
+    # dashboard
+    path('dashboard/', include('user_profile.urls'))
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
